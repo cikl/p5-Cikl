@@ -65,3 +65,7 @@ feature 'postgres', "Postgres DBI support" => sub {
   requires 'SQL::Abstract', '1.74';
   requires 'SQL::Abstract::More', '1.17';
 };
+
+feature 'elasticsearch', "Elasticsearch support" => sub {
+  requires 'Elasticsearch';
+};
