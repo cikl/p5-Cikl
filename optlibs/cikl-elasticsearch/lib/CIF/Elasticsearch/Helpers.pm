@@ -1,8 +1,8 @@
-package CIF::Elasticsearch::Helpers;
+package Cikl::Elasticsearch::Helpers;
 use strict;
 use warnings;
 require Exporter;
-require CIF::Models::Event;
+require Cikl::Models::Event;
 use POSIX qw/strftime/;
 our @ISA = qw(Exporter);
 our @EXPORT_OK = qw(
@@ -26,7 +26,7 @@ sub event2es {
 
 sub es2event {
   my $hash = shift;
-  return CIF::Models::Event->from_hash($hash)
+  return Cikl::Models::Event->from_hash($hash)
 }
 
 

@@ -6,14 +6,14 @@ use Getopt::Long;
 use Data::Dumper;
 require ExtUtils::MakeMaker;
 
-our $DEF_INDEX = 'cif';
+our $DEF_INDEX = 'cikl';
 our $DEF_HOST = 'localhost';
 our $DEF_PORT = 9200;
 
 
 ###########
 
-name 'cif-elasticsearch';
+name 'cikl-elasticsearch';
 version '1.0';
 license 'lgpl';
 

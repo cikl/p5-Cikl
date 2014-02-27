@@ -1,16 +1,16 @@
-package CIF::Elasticsearch::ClientRole;
+package Cikl::Elasticsearch::ClientRole;
 use strict;
 use warnings;
 use Mouse::Role;
 use Elasticsearch;
 use namespace::autoclean;
-use CIF::Elasticsearch::Helpers qw/yyyymmdd/;
-use CIF qw/debug/;
+use Cikl::Elasticsearch::Helpers qw/yyyymmdd/;
+use Cikl qw/debug/;
 
 has 'index_prefix' => (
   is => 'ro',
   isa => 'Str',
-  default => sub { 'cif-' }
+  default => sub { 'cikl-' }
 );
 
 has 'default_index' => (
@@ -140,7 +140,7 @@ sub update_templates {
   };
 
   my $response = $self->client->indices->put_template(
-    name => 'cif_primary',
+    name => 'cikl_primary',
     body => $template
   );
   if ($response->{ok} != 1) {

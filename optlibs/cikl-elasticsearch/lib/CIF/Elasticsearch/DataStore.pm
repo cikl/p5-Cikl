@@ -1,19 +1,19 @@
-package CIF::Elasticsearch::DataStore;
+package Cikl::Elasticsearch::DataStore;
 use strict;
 use warnings;
 use Mouse;
-use CIF::DataStore::Role ();
-use CIF::Postgres::SQLRole ();
-use CIF::Postgres::DataStoreSQL ();
-use CIF::Codecs::JSON ();
+use Cikl::DataStore::Role ();
+use Cikl::Postgres::SQLRole ();
+use Cikl::Postgres::DataStoreSQL ();
+use Cikl::Codecs::JSON ();
 use Elasticsearch::Bulk;
 use Time::HiRes qw/tv_interval gettimeofday/;
 use namespace::autoclean;
 use Data::Dumper;
-use CIF qw/debug/;
-use CIF::Elasticsearch::Helpers qw/event2es es2event yyyymmdd/;
+use Cikl qw/debug/;
+use Cikl::Elasticsearch::Helpers qw/event2es es2event yyyymmdd/;
 
-with "CIF::DataStore::Role", 'CIF::Elasticsearch::ClientRole';
+with "Cikl::DataStore::Role", 'Cikl::Elasticsearch::ClientRole';
 
 has 'pending_count' => (
   is => 'rw',
