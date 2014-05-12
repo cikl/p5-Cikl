@@ -4,6 +4,8 @@ use warnings;
 use Mouse;
 use namespace::autoclean;
 use Try::Tiny;
+use Cikl::Logging;
+my $logger = get_logger();
 
 has 'builder' => (
   is => 'bare',
@@ -50,6 +52,7 @@ sub emit {
     $err = shift;
   };
   if ($err) {
+    $logger->debug("Failed to parse: $err");
     $self->_set_count_failed($self->count_failed() + 1);
     return;
   }
