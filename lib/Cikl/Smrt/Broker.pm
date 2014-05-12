@@ -66,8 +66,6 @@ sub emit {
 }
 
 sub _emit {
-  my $self = shift;
-  die("_emit not implemented!");
 }
 
 __PACKAGE__->meta->make_immutable;
