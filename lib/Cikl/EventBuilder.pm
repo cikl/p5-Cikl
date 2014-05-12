@@ -88,7 +88,10 @@ sub normalize {
   $r->{reporttime} = $self->refresh ? $now : 
       normalize_timestamp($r->{reporttime}, $now);
 
-  $r->{address} = address_from_protoevent($r);
+  my $address = address_from_protoevent($r);
+  if (defined($address)) {
+    $r->{address} = $address
+  }
   # MPR: Disabling value expansion, for now.
 #  foreach my $key (keys %$r){
 #    my $v = $r->{$key};
