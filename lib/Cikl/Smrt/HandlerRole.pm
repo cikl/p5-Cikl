@@ -157,14 +157,14 @@ sub process {
       return($err);
     }
 
-    $logger->debug('records to be processed: '.$broker->count() . ", too old: " . $broker->count_too_old());
+    $logger->warn('records to be processed: '.$broker->count() . ", too old: " . $broker->count_too_old());
     if ($broker->count_failed() > 0) {
-      $logger->debug('failed to create events: '. $broker->count_failed());
+      $logger->error('failed to create events: '. $broker->count_failed());
     }
 
     if($broker->count() == 0){
       if ($broker->count_too_old() != 0) {
-        $logger->debug('your goback is too small, if you want records, increase the goback time');
+        $logger->warn('your goback is too small, if you want records, increase the goback time');
       }
       return (undef, 'no records');
     }
