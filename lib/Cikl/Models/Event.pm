@@ -23,13 +23,6 @@ has 'assessment' => (
   coerce => 1
 );
 
-has 'description' => (
-  is => 'rw',
-  isa => 'Cikl::DataTypes::LowerCaseStr',
-  default => sub { 'unknown' },
-  coerce => 1
-);
-
 has 'address' => (
   is => 'rw',
   does => 'Cikl::Models::AddressRole'
@@ -47,19 +40,10 @@ has 'reporttime' => (
   coerce => 1
 );
 
-has 'alternativeid' => (is => 'rw');
-has 'alternativeid_restriction' => (is => 'rw');
-has 'confidence' => (
-  is => 'rw', 
-  isa => 'Cikl::DataTypes::Integer', 
-  coerce => 1
-);
-has 'hash' => (is => 'rw');
-
-has 'malware_md5' => (is => 'rw');
-has 'malware_sha1' => (is => 'rw');
 has 'md5' => (is => 'rw');
 has 'sha1' => (is => 'rw');
+has 'sha256' => (is => 'rw');
+has 'sha512' => (is => 'rw');
 
 has 'portlist' => (
   is => 'rw',
@@ -68,7 +52,6 @@ has 'portlist' => (
 
 has 'protocol' => (is => 'rw');
 has 'restriction' => (is => 'rw');
-has 'severity' => (is => 'rw');
 has 'source' => (is => 'rw');
 
 has 'cc' => (is => 'rw');
