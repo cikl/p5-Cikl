@@ -8,7 +8,6 @@ use Try::Tiny;
 use Storable qw/dclone/;
 
 use constant FIELDS => {
-  group => 'everyone',
   parser => undef,
   detecttime_format => undef,
   detecttime_zone => undef,
@@ -38,7 +37,6 @@ use constant FIELDS => {
 };
 
 use constant REQUIRED_FIELDS => {
-  group => 1,
   feed => 1,
   source => 1,
   parser => 1
@@ -99,7 +97,6 @@ sub new {
 
   bless($self,$class);
 
-  $config_data->{group} = $self->{group};
   $config_data->{source} = $self->{source};
   # The remaining fields will act as defaults for events, when they are created.
   $self->{event_fields} = $config_data;

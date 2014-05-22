@@ -23,7 +23,6 @@ use constant ALEXA_ZIP => 'http://s3.amazonaws.com/alexa-static/top-1m.csv.zip';
 sub _default_event_data {
   my $self = shift;
   return {
-    group => 'everyone',
     assessment => 'whitelist'
   };
 }

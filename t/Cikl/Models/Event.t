@@ -13,11 +13,10 @@ sub build {
   return Cikl::Models::Event->new(%args);
 }
 
-sub test_required_args : Test(4) {
+sub test_required_args : Test(3) {
   my $self = shift;
 
   my %working_args = (
-    group => "everyone",
     assessment => "malware",
   );
 
@@ -25,10 +24,6 @@ sub test_required_args : Test(4) {
   dies_ok { Cikl::Models::Event->new() }  "die with no arguments";
 
   my %badargs = %working_args;
-  delete($badargs{group});
-  dies_ok { Cikl::Models::Event->new(%badargs) }  "requires group";
-
-  %badargs = %working_args;
   delete($badargs{assessment});
   dies_ok { Cikl::Models::Event->new(%badargs) }  "requires assessment";
 }

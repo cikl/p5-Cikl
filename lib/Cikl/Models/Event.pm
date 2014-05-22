@@ -10,12 +10,6 @@ use Cikl::Models::AddressRole;
 use Cikl::AddressBuilder qw/create_address/;
 use namespace::autoclean;
 
-has 'group' => (
-  is => 'rw',
-  isa => 'Cikl::DataTypes::LowerCaseStr',
-  required => 1,
-);
-
 has 'assessment' => (
   is => 'rw',
   isa => 'Cikl::DataTypes::LowerCaseStr',
