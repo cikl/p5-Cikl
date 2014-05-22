@@ -6,7 +6,7 @@ use Mouse::Util::TypeConstraints;
 use Cikl::DataTypes::LowerCaseStr;
 use Cikl::DataTypes::Integer;
 use Cikl::DataTypes::PortList;
-use Cikl::Models::AddressRole;
+use Cikl::Models::Observable;
 use Cikl::AddressBuilder qw/create_address/;
 use namespace::autoclean;
 
@@ -19,7 +19,7 @@ has 'assessment' => (
 
 has 'address' => (
   is => 'rw',
-  does => 'Cikl::Models::AddressRole'
+  does => 'Cikl::Models::Observable'
 );
 
 has 'detecttime' => (

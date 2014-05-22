@@ -2,10 +2,10 @@ package Cikl::Models::Address::fqdn;
 use strict;
 use warnings;
 use Mouse;
-use Cikl::Models::AddressRole;
+use Cikl::Models::Observable;
 use Cikl::DataTypes::Fqdn;
 use namespace::autoclean;
-with 'Cikl::Models::AddressRole';
+with 'Cikl::Models::Observable';
 
 sub type { 'fqdn' }
 

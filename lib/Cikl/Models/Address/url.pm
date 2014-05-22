@@ -2,10 +2,10 @@ package Cikl::Models::Address::url;
 use strict;
 use warnings;
 use Mouse;
-use Cikl::Models::AddressRole;
+use Cikl::Models::Observable;
 use Cikl::DataTypes::Url;
 use namespace::autoclean;
-with 'Cikl::Models::AddressRole';
+with 'Cikl::Models::Observable';
 
 use constant RE_URL_SCHEME => qr/^[-+.a-zA-Z0-9]+:\/\//;
 

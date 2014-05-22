@@ -1,4 +1,4 @@
-package Cikl::Models::AddressRole;
+package Cikl::Models::Observable;
 use strict;
 use warnings;
 use Mouse::Role;

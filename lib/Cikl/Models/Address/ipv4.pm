@@ -2,10 +2,10 @@ package Cikl::Models::Address::ipv4;
 use strict;
 use warnings;
 use Mouse;
-use Cikl::Models::AddressRole;
+use Cikl::Models::Observable;
 use Cikl::DataTypes::Ipv4;
 use namespace::autoclean;
-with 'Cikl::Models::AddressRole';
+with 'Cikl::Models::Observable';
 
 sub type { 'ipv4' }
 

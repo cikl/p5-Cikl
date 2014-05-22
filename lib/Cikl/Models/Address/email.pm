@@ -2,10 +2,10 @@ package Cikl::Models::Address::email;
 use strict;
 use warnings;
 use Mouse;
-use Cikl::Models::AddressRole;
+use Cikl::Models::Observable;
 use namespace::autoclean;
 use Cikl::DataTypes::Email;
-with 'Cikl::Models::AddressRole';
+with 'Cikl::Models::Observable';
 
 sub type { 'email' }
 

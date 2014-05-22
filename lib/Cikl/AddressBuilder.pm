@@ -15,8 +15,8 @@ my $type_map = _build_type_map();
 sub _build_type_map {
   my $ret = {};
   foreach my $module (_plugins()) {
-    unless ($module->does("Cikl::Models::AddressRole")) {
-      die("$module must implement Cikl::Models::AddressRole");
+    unless ($module->does("Cikl::Models::Observable")) {
+      die("$module must implement Cikl::Models::Observable");
     }
     my $type = $module->type();
     if (my $existing = $ret->{$type}) {
