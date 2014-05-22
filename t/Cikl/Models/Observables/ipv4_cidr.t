@@ -1,14 +1,14 @@
-package TestsFor::Cikl::Models::Address::ipv4_cidr;
+package TestsFor::Cikl::Models::Observables::ipv4_cidr;
 use lib 'testlib';
-use base qw(Cikl::Models::Address::TestClass);
+use base qw(Cikl::Models::Observables::TestClass);
 use strict;
 use warnings;
 use Test::More;
 use Test::Exception;
 
-use Cikl::Models::Address::ipv4_cidr;
+use Cikl::Models::Observables::ipv4_cidr;
 
-sub testing_class { "Cikl::Models::Address::ipv4_cidr"; }
+sub testing_class { "Cikl::Models::Observables::ipv4_cidr"; }
 
 sub test_known_valid_ipv4_cidr : Test(2) { 
   my $self = shift;

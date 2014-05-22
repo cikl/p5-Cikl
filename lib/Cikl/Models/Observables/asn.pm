@@ -1,16 +1,16 @@
-package Cikl::Models::Address::ipv4;
+package Cikl::Models::Observables::asn;
 use strict;
 use warnings;
 use Mouse;
 use Cikl::Models::Observable;
-use Cikl::DataTypes::Ipv4;
+use Cikl::DataTypes::Asn;
 use namespace::autoclean;
 with 'Cikl::Models::Observable';
 
-sub type { 'ipv4' }
+sub type { 'asn' }
 
 has '+value' => (
-  isa => 'Cikl::DataTypes::Ipv4'
+  isa => 'Cikl::DataTypes::Asn',
 );
 
 sub normalize_value {
@@ -24,4 +24,5 @@ sub normalize_value {
 
 __PACKAGE__->meta->make_immutable;
 1;
+
 

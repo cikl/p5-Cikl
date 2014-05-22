@@ -1,8 +1,8 @@
-package Cikl::AddressBuilder;
+package Cikl::ObservableBuilder;
 use strict;
 use warnings;
 use Carp;
-use Module::Pluggable search_path => "Cikl::Models::Address", require => 1,
+use Module::Pluggable search_path => "Cikl::Models::Observables", require => 1,
   sub_name => "_plugins", on_require_error => \&croak;
 
 use namespace::autoclean;

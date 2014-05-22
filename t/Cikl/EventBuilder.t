@@ -55,7 +55,7 @@ sub test_build_basic_ipv4 : Test(6) {
   is($e->reporttime(), $builder->_now(), "it has a default 'reporttime'");
   is($e->detecttime(), $builder->_now(), "it has a default 'detecttime'");
   is($e->assessment(), "whitelist", "it has the provided assessment");
-  isa_ok($e->address(), 'Cikl::Models::Address::ipv4', "the address is an ipv4");
+  isa_ok($e->address(), 'Cikl::Models::Observables::ipv4', "the address is an ipv4");
   is($e->address()->value(), '1.2.3.4', "the address 1.2.3.4");
 }
 TestsFor::Cikl::EventBuilder->runtests;

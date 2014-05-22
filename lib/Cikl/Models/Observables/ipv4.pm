@@ -1,16 +1,16 @@
-package Cikl::Models::Address::email;
+package Cikl::Models::Observables::ipv4;
 use strict;
 use warnings;
 use Mouse;
 use Cikl::Models::Observable;
+use Cikl::DataTypes::Ipv4;
 use namespace::autoclean;
-use Cikl::DataTypes::Email;
 with 'Cikl::Models::Observable';
 
-sub type { 'email' }
+sub type { 'ipv4' }
 
 has '+value' => (
-  isa => 'Cikl::DataTypes::Email',
+  isa => 'Cikl::DataTypes::Ipv4'
 );
 
 sub normalize_value {
@@ -19,8 +19,9 @@ sub normalize_value {
   return $value unless ($value && ref($value) eq '');
   $value =~ s/^\s+//;
   $value =~ s/\s+$//;
-  return lc($value);
+  return $value;
 }
 
 __PACKAGE__->meta->make_immutable;
 1;
+

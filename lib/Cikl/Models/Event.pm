@@ -7,7 +7,7 @@ use Cikl::DataTypes::LowerCaseStr;
 use Cikl::DataTypes::Integer;
 use Cikl::DataTypes::PortList;
 use Cikl::Models::Observable;
-use Cikl::AddressBuilder qw/create_address/;
+use Cikl::ObservableBuilder qw/create_address/;
 use namespace::autoclean;
 
 has 'assessment' => (

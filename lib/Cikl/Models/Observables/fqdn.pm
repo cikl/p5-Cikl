@@ -1,16 +1,16 @@
-package Cikl::Models::Address::asn;
+package Cikl::Models::Observables::fqdn;
 use strict;
 use warnings;
 use Mouse;
 use Cikl::Models::Observable;
-use Cikl::DataTypes::Asn;
+use Cikl::DataTypes::Fqdn;
 use namespace::autoclean;
 with 'Cikl::Models::Observable';
 
-sub type { 'asn' }
+sub type { 'fqdn' }
 
 has '+value' => (
-  isa => 'Cikl::DataTypes::Asn',
+  isa => 'Cikl::DataTypes::Fqdn'
 );
 
 sub normalize_value {
@@ -19,10 +19,8 @@ sub normalize_value {
   return $value unless ($value && ref($value) eq '');
   $value =~ s/^\s+//;
   $value =~ s/\s+$//;
-  return $value;
+  return lc($value);
 }
 
 __PACKAGE__->meta->make_immutable;
 1;
-
-

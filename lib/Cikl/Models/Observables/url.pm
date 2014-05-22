@@ -1,4 +1,4 @@
-package Cikl::Models::Address::url;
+package Cikl::Models::Observables::url;
 use strict;
 use warnings;
 use Mouse;

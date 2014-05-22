@@ -1,16 +1,16 @@
-package Cikl::Models::Address::ipv4_cidr;
+package Cikl::Models::Observables::email;
 use strict;
 use warnings;
 use Mouse;
 use Cikl::Models::Observable;
-use Cikl::DataTypes::Ipv4Cidr;
 use namespace::autoclean;
+use Cikl::DataTypes::Email;
 with 'Cikl::Models::Observable';
 
-sub type { 'ipv4_cidr' }
+sub type { 'email' }
 
 has '+value' => (
-  isa => 'Cikl::DataTypes::Ipv4Cidr'
+  isa => 'Cikl::DataTypes::Email',
 );
 
 sub normalize_value {
@@ -19,10 +19,8 @@ sub normalize_value {
   return $value unless ($value && ref($value) eq '');
   $value =~ s/^\s+//;
   $value =~ s/\s+$//;
-  return $value;
+  return lc($value);
 }
 
 __PACKAGE__->meta->make_immutable;
 1;
-
-

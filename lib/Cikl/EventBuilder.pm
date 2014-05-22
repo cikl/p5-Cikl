@@ -2,7 +2,7 @@ package Cikl::EventBuilder;
 use strict;
 use warnings;
 use Cikl::Models::Event;
-use Cikl::AddressBuilder qw/address_from_protoevent/;
+use Cikl::ObservableBuilder qw/address_from_protoevent/;
 use Mouse;
 use namespace::autoclean;
 use Try::Tiny;

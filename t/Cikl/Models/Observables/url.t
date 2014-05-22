@@ -1,14 +1,14 @@
-package TestsFor::Cikl::Models::Address::url;
+package TestsFor::Cikl::Models::Observables::url;
 use lib 'testlib';
-use base qw(Cikl::Models::Address::TestClass);
+use base qw(Cikl::Models::Observables::TestClass);
 use strict;
 use warnings;
 use Test::More;
 use Test::Exception;
 
-use Cikl::Models::Address::url;
+use Cikl::Models::Observables::url;
 
-sub testing_class { "Cikl::Models::Address::url"; }
+sub testing_class { "Cikl::Models::Observables::url"; }
 
 sub test_known_good_urls: Test(3) { 
   my $self = shift;
