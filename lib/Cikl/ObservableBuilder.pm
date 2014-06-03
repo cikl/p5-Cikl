@@ -8,7 +8,7 @@ use Module::Pluggable search_path => "Cikl::Models::Observables", require => 1,
 use namespace::autoclean;
 require Exporter;
 our @ISA = qw/Exporter/;
-our @EXPORT_OK = qw/address_from_protoevent create_address create_addresses/;
+our @EXPORT_OK = qw/observable_from_protoevent create_observable create_observables/;
 
 my $type_map = _build_type_map();
 
@@ -27,7 +27,7 @@ sub _build_type_map {
   return $ret;
 }
 
-sub create_address {
+sub create_observable {
   my $type = shift;
   my $value = shift;
   my $type_class = $type_map->{$type};
@@ -37,29 +37,29 @@ sub create_address {
   return $type_class->new_normalized(value => $value);
 }
 
-sub create_addresses {
+sub create_observables {
   my $protoevent = shift; # hashref
   my @ret;
   foreach my $type (keys(%{$type_map})) {
     if (my $value = delete($protoevent->{$type})) {
-      push(@ret, create_address($type, $value));
+      push(@ret, create_observable($type, $value));
     }
   }
   return \@ret;
 }
 
-sub address_from_protoevent {
+sub observable_from_protoevent {
   my $protoevent = shift; # hashref
-  my $address;
+  my $observable;
   foreach my $type (keys(%{$type_map})) {
     if (my $value = delete($protoevent->{$type})) {
-      if (defined($address)) {
-        die("An event can only have one address! Has: " . $address->type() . " and $type");
+      if (defined($observable)) {
+        die("An event can only have one observable! Has: " . $observable->type() . " and $type");
       }
-      $address = create_address($type, $value);
+      $observable = create_observable($type, $value);
     }
   }
-  return $address;
+  return $observable;
 }
 
 1;

@@ -22,13 +22,6 @@ sub encode_event {
   return $JSON->encode($event->to_hash());
 }
 
-sub decode_event {
-  my $self = shift;
-  my $json = shift;
-  my $data = $JSON->decode($json);
-  return Cikl::Models::Event->from_hash($data);
-}
-
 __PACKAGE__->meta->make_immutable;
 
 1;

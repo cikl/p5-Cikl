@@ -7,7 +7,8 @@ use Cikl::DataTypes::LowerCaseStr;
 use Cikl::DataTypes::Integer;
 use Cikl::DataTypes::PortList;
 use Cikl::Models::Observable;
-use Cikl::ObservableBuilder qw/create_address/;
+use Cikl::Models::Observables;
+use Cikl::ObservableBuilder qw/create_observable/;
 use namespace::autoclean;
 
 has 'assessment' => (
@@ -17,9 +18,12 @@ has 'assessment' => (
   coerce => 1
 );
 
-has 'address' => (
-  is => 'rw',
-  does => 'Cikl::Models::Observable'
+has 'source' => (is => 'rw');
+
+has 'observables' => (
+  is => 'ro',
+  isa => 'Cikl::Models::Observables',
+  default => sub { Cikl::Models::Observables->new() }
 );
 
 has 'detecttime' => (
@@ -34,6 +38,9 @@ has 'reporttime' => (
   coerce => 1
 );
 
+has 'alternativeid' => (is => 'rw');
+has 'alternativeid_restriction' => (is => 'rw');
+
 has 'md5' => (is => 'rw');
 has 'sha1' => (is => 'rw');
 has 'sha256' => (is => 'rw');
@@ -46,31 +53,14 @@ has 'portlist' => (
 
 has 'protocol' => (is => 'rw');
 has 'restriction' => (is => 'rw');
-has 'source' => (is => 'rw');
 
 has 'cc' => (is => 'rw');
 has 'rir' => (is => 'rw');
 
 sub to_hash {
   my $ret = { %{$_[0]} };
-  if ($ret->{address}) {
-    $ret->{address} = $ret->{address}->to_hash();
-  }
+  $ret->{observables} = $ret->{observables}->to_hash();
   return $ret;
-}
-
-sub from_hash {
-  my $class = shift;
-  my $data = shift;
-  my $address = $data->{address};
-  if ($address) {
-    my $type = (keys %$address)[0];
-    if ($type) {
-      $address = create_address($type, $address->{$type});
-      $data->{address} = $address;
-    }
-  }
-  return $class->new($data);
 }
 
 __PACKAGE__->meta->make_immutable;
