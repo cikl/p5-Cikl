@@ -1,16 +1,16 @@
-package Cikl::Models::Address::ipv4_cidr;
+package Cikl::Models::Observables::asn;
 use strict;
 use warnings;
 use Mouse;
-use Cikl::Models::AddressRole;
-use Cikl::DataTypes::Ipv4Cidr;
+use Cikl::Models::Observable;
+use Cikl::DataTypes::Asn;
 use namespace::autoclean;
-with 'Cikl::Models::AddressRole';
+with 'Cikl::Models::Observable';
 
-sub type { 'ipv4_cidr' }
+sub type { 'asn' }
 
 has '+value' => (
-  isa => 'Cikl::DataTypes::Ipv4Cidr'
+  isa => 'Cikl::DataTypes::Asn',
 );
 
 sub normalize_value {

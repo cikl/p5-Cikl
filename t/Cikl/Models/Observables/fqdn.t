@@ -1,14 +1,14 @@
-package TestsFor::Cikl::Models::Address::fqdn;
+package TestsFor::Cikl::Models::Observables::fqdn;
 use lib 'testlib';
-use base qw(Cikl::Models::Address::TestClass);
+use base qw(Cikl::Models::Observables::TestClass);
 use strict;
 use warnings;
 use Test::More;
 use Test::Exception;
 
-use Cikl::Models::Address::fqdn;
+use Cikl::Models::Observables::fqdn;
 
-sub testing_class { "Cikl::Models::Address::fqdn"; }
+sub testing_class { "Cikl::Models::Observables::fqdn"; }
 
 sub test_known_good_fqdns : Test(2) { 
   my $self = shift;

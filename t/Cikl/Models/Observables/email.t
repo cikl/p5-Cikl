@@ -1,14 +1,14 @@
-package TestsFor::Cikl::Models::Address::email;
+package TestsFor::Cikl::Models::Observables::email;
 use lib 'testlib';
-use base qw(Cikl::Models::Address::TestClass);
+use base qw(Cikl::Models::Observables::TestClass);
 use strict;
 use warnings;
 use Test::More;
 use Test::Exception;
 
-use Cikl::Models::Address::email;
+use Cikl::Models::Observables::email;
 
-sub testing_class { 'Cikl::Models::Address::email'; }
+sub testing_class { 'Cikl::Models::Observables::email'; }
 
 sub test_known_good_emails : Test(2) { 
   my $self = shift;

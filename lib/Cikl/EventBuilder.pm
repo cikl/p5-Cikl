@@ -2,7 +2,7 @@ package Cikl::EventBuilder;
 use strict;
 use warnings;
 use Cikl::Models::Event;
-use Cikl::AddressBuilder qw/address_from_protoevent/;
+use Cikl::ObservableBuilder qw/observable_from_protoevent/;
 use Mouse;
 use namespace::autoclean;
 use Try::Tiny;
@@ -88,10 +88,13 @@ sub normalize {
   $r->{reporttime} = $self->refresh ? $now : 
       normalize_timestamp($r->{reporttime}, $now);
 
-  my $address = address_from_protoevent($r);
+  my $observables = [];
+  my $address = observable_from_protoevent($r);
   if (defined($address)) {
-    $r->{address} = $address
+    push(@$observables, $address);
+    $r->{observables} = $address;
   }
+  $r->{observables} = $observables;
   # MPR: Disabling value expansion, for now.
 #  foreach my $key (keys %$r){
 #    my $v = $r->{$key};
@@ -130,11 +133,15 @@ sub build_event {
   }
 
   my $event;
+  my $observables = delete($normalized->{observables});
   try {
     $event = Cikl::Models::Event->new($normalized);
   } catch {
     $err = shift;
   };
+  foreach my $address (@$observables) {
+    $event->observables()->add($address);
+  }
   if ($err) {
     die("Failed to build event. Likely missing a required field: $err");
   }

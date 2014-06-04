@@ -1,4 +1,4 @@
-package Cikl::Models::Address::TestClass;
+package Cikl::Models::Observables::TestClass;
 use base qw(Test::Class);
 use strict;
 use warnings;

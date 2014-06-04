@@ -1,14 +1,14 @@
-package TestsFor::Cikl::Models::Address::asn;
+package TestsFor::Cikl::Models::Observables::asn;
 use lib 'testlib';
-use base qw(Cikl::Models::Address::TestClass);
+use base qw(Cikl::Models::Observables::TestClass);
 use strict;
 use warnings;
 use Test::More;
 use Test::Exception;
 
-use Cikl::Models::Address::asn;
+use Cikl::Models::Observables::asn;
 
-sub testing_class { 'Cikl::Models::Address::asn'; }
+sub testing_class { 'Cikl::Models::Observables::asn'; }
 
 sub test_known_good_asns : Test(4) { 
   my $self = shift;

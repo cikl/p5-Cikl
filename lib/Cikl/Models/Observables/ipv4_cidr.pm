@@ -1,16 +1,16 @@
-package Cikl::Models::Address::fqdn;
+package Cikl::Models::Observables::ipv4_cidr;
 use strict;
 use warnings;
 use Mouse;
-use Cikl::Models::AddressRole;
-use Cikl::DataTypes::Fqdn;
+use Cikl::Models::Observable;
+use Cikl::DataTypes::Ipv4Cidr;
 use namespace::autoclean;
-with 'Cikl::Models::AddressRole';
+with 'Cikl::Models::Observable';
 
-sub type { 'fqdn' }
+sub type { 'ipv4_cidr' }
 
 has '+value' => (
-  isa => 'Cikl::DataTypes::Fqdn'
+  isa => 'Cikl::DataTypes::Ipv4Cidr'
 );
 
 sub normalize_value {
@@ -19,8 +19,10 @@ sub normalize_value {
   return $value unless ($value && ref($value) eq '');
   $value =~ s/^\s+//;
   $value =~ s/\s+$//;
-  return lc($value);
+  return $value;
 }
 
 __PACKAGE__->meta->make_immutable;
 1;
+
+
