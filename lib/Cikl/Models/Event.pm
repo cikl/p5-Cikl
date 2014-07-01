@@ -26,16 +26,18 @@ has 'observables' => (
   default => sub { Cikl::Models::Observables->new() }
 );
 
-has 'detecttime' => (
+has 'detect_time' => (
   is => 'rw',
-  isa => "Cikl::DataTypes::Integer",
+  isa => "Maybe[Cikl::DataTypes::Integer]",
   coerce => 1
 );
 
-has 'reporttime' => (
+has 'import_time' => (
   is => 'rw',
   isa => "Cikl::DataTypes::Integer",
-  coerce => 1
+  coerce => 1,
+  # Default to right now.
+  default => sub { time() } 
 );
 
 has 'alternativeid' => (is => 'rw');

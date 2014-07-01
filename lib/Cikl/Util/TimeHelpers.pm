@@ -35,11 +35,9 @@ Cikl::Util::TimeHelpers - Time helpers for Cikl
 
 sub normalize_timestamp {
     my $dt  = shift;
-    my $now = shift || time(); # better perf in loops if we can pass the default now value
 
     if (!defined($dt)) {
-      # Default to now.
-      return $now;
+      return undef;
     }
 
     if(ref($dt) eq 'DateTime'){
@@ -65,11 +63,11 @@ sub normalize_timestamp {
         $dt.= 'T00:00:00Z';
         $dt = eval { DateTime::Format::DateParse->parse_datetime($dt, "UTC") };
         unless($dt){
-          return $now;
+          return undef;
         }
         return $dt->epoch();
       } else {
-        return $now;
+        return undef;
       }
     } elsif($dt =~ /^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})(\S+)?$/) {
       my ($year,$month,$day,$hour,$min,$sec,$tz) = ($1,$2,$3,$4,$5,$6,$7);

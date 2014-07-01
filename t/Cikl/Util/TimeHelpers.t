@@ -38,13 +38,12 @@ sub normalizes_properly {
   };
 }
 
-sub returns_now {
+sub returns_undef {
   my $name = shift;
   my $val = shift;
   subtest $name => sub {
-    my $ret = normalize_timestamp($val, FAKE_NOW_EPOCH);
-    like($ret, qr/^\d{10}$/);
-    is($ret, FAKE_NOW_EPOCH, "fails to parse and returns default value (now)");
+    my $ret = normalize_timestamp($val);
+    ok(!defined($ret), , "returns undef when it fails to parse");
   };
 }
 
@@ -86,15 +85,15 @@ sub test_normalize_timestamp : Test(13) {
     )->epoch()
 );
 
-  returns_now("an 8 digit date time with an invalid month", 
+  returns_undef("an 8 digit date time with an invalid month", 
     "20131309");
 
-  returns_now("an 8 digit date time with an invalid day", 
+  returns_undef("an 8 digit date time with an invalid day", 
     "20131232");
 
-  returns_now("a nine-digit number", "123456789");
+  returns_undef("a nine-digit number", "123456789");
 
-  returns_now("a seven-digit number", "1234567");
+  returns_undef("a seven-digit number", "1234567");
 
   normalizes_properly("Mon, 21 Nov 94 13:55:19 UTC", 
     "Mon, 21 Nov 94 13:55:19 UTC", 
