@@ -37,16 +37,16 @@ sub test_no_observables : Test(2) {
   my $now = time();
   my $event = Cikl::Models::Event->new({
       assessment => $assessment,
-      reporttime => $now,
-      detecttime => $now
+      import_time => $now,
+      detect_time => $now
     });
   isa_ok($event, "Cikl::Models::Event", "it's an event");
 
   cmp_deeply($event->to_hash(), 
     {
       assessment => $assessment,
-      reporttime => $now,
-      detecttime => $now,
+      import_time => $now,
+      detect_time => $now,
       observables => {}
     },
     "to_hash generates the right data");
@@ -59,8 +59,8 @@ sub test_with_observables : Test(2) {
   my $now = time();
   my $event = Cikl::Models::Event->new({
       assessment => $assessment,
-      reporttime => $now,
-      detecttime => $now
+      import_time => $now,
+      detect_time => $now
     });
   isa_ok($event, "Cikl::Models::Event", "it's an event");
 
@@ -74,8 +74,8 @@ sub test_with_observables : Test(2) {
   cmp_deeply($event->to_hash(), 
     {
       assessment => $assessment,
-      reporttime => $now,
-      detecttime => $now,
+      import_time => $now,
+      detect_time => $now,
       observables => {
         ipv4 => [
           {

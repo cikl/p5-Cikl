@@ -21,29 +21,31 @@ sub test_normalize_empty_hash : Test(4) {
 
   my $r = $builder->normalize({});
   my $count = keys %$r;
-  is($count, 3, "it has three keys");
-  is($r->{reporttime}, $builder->_now(), "it has a default 'reporttime'");
-  is($r->{detecttime}, $builder->_now(), "it has a default 'detecttime'");
+  is($count, 1, "it has three keys");
+  ok(!exists($r->{import_time}), "it has no 'import_time'");
+  ok(!exists($r->{detect_time}), "it has no 'detect_time'");
   cmp_deeply($r->{observables}, [], "it has an empty 'observables' array");
 }
 
-sub test_build_basic : Test(5) {
+sub test_build_basic : Test(6) {
   my $self = shift;
   my $builder = $self->{builder};
 
   my $data = {
     assessment => 'whitelist'
   };
-
+  my $before = time();
   my $e = $builder->build_event($data);
+  my $after = time();
   isa_ok($e, "Cikl::Models::Event", "it's an Event");
-  is($e->reporttime(), $builder->_now(), "it has a default 'reporttime'");
-  is($e->detecttime(), $builder->_now(), "it has a default 'detecttime'");
+  cmp_ok($e->import_time(), '>=', $before, "it's import_time is correct");
+  cmp_ok($e->import_time(), '<=', $after, "it's import_time is correct");
+  is($e->detect_time(), undef, "it an undefined 'detect_time'");
   is($e->assessment(), "whitelist", "it has the provided assessment");
   ok($e->observables()->is_empty(), "it has no observables");
 }
 
-sub test_build_basic_ipv4 : Test(7) {
+sub test_build_basic_ipv4 : Test(8) {
   my $self = shift;
   my $builder = $self->{builder};
 
@@ -52,10 +54,13 @@ sub test_build_basic_ipv4 : Test(7) {
     ipv4 => '1.2.3.4'
   };
 
+  my $before = time();
   my $e = $builder->build_event($data);
+  my $after = time();
   isa_ok($e, "Cikl::Models::Event", "it's an Event");
-  is($e->reporttime(), $builder->_now(), "it has a default 'reporttime'");
-  is($e->detecttime(), $builder->_now(), "it has a default 'detecttime'");
+  cmp_ok($e->import_time(), '>=', $before, "it's import_time is correct");
+  cmp_ok($e->import_time(), '<=', $after, "it's import_time is correct");
+  is($e->detect_time(), undef, "it has a default 'detect_time'");
   is($e->assessment(), "whitelist", "it has the provided assessment");
   is($e->observables()->count(), 1, "it has one observable");
 

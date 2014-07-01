@@ -61,12 +61,6 @@ has 'not_before' => (
   }
 );
 
-has '_now' => (
-  is => 'ro', 
-  default => sub { time() },
-  init_arg => undef
-);
-
 sub merge_default_event_data {
   my $self = shift;
   my $data_to_merge = shift;
@@ -78,15 +72,17 @@ sub normalize {
   my $self = shift;
   my $r = shift;
 
-  my $now  = $self->_now;
-  my $dt = $self->detecttime_parser->($r->{detecttime}, $now);
-  if($dt < $self->not_before) {
+  $r->{detect_time} = $self->detecttime_parser->($r->{detecttime});
+  if (!defined($r->{detect_time})) {
+    delete($r->{detect_time});
+  } elsif ($r->{detect_time} < $self->not_before) {
     return(undef);
   }
-  $r->{detecttime} = $dt;
 
-  $r->{reporttime} = $self->refresh ? $now : 
-      normalize_timestamp($r->{reporttime}, $now);
+  $r->{import_time} = normalize_timestamp(delete($r->{reporttime}));
+  if (!defined($r->{import_time})) {
+    delete($r->{import_time});
+  }
 
   my $observables = [];
   my $address = observable_from_protoevent($r);
@@ -139,11 +135,11 @@ sub build_event {
   } catch {
     $err = shift;
   };
-  foreach my $address (@$observables) {
-    $event->observables()->add($address);
-  }
   if ($err) {
     die("Failed to build event. Likely missing a required field: $err");
+  }
+  foreach my $address (@$observables) {
+    $event->observables()->add($address);
   }
   return $event;
 }
